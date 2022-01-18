@@ -241,6 +241,7 @@ h1 {
 }
 .pizzaInfo--addButton {
     margin-top:30px;
+    align-items: center;
     padding:20px 30px;
     border-radius:20px;
     background-color:#48d05f;

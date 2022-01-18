@@ -10,7 +10,7 @@ pizzaJson.map((item , index) => {
 
     pizzaItem.setAttribute('data-key', index);
     pizzaItem.querySelector('.pizza-item--img img').src = item.img;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2).replace(".",",")}`;
+    pizzaItem.querySelector('.pizza-item--price').innerHTML = `$ ${item.price.toFixed(2).replace(".",",")}`;
     pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     
@@ -26,7 +26,7 @@ pizzaJson.map((item , index) => {
         q('.pizzaBig img').src = pizzaJson[key].img;
         q('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
         q('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
-        q('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2).replace(".",",")}`;
+        q('.pizzaInfo--actualPrice').innerHTML = `$ ${pizzaJson[key].price.toFixed(2).replace(".",",")}`;
         q('.pizzaInfo--size.selected').classList.remove('selected');
        
         qsa('.pizzaInfo--size').forEach((size, sizeIndex) => {
@@ -64,7 +64,7 @@ qsa('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach ((itemCa
 //incrementar e decrementar a quantidade do pedido
 q('.pizzaInfo--qtmenos').addEventListener('click', () => {
     if (winQtd > 1) {
-     winQtd--;
+    winQtd--;
     q('.pizzaInfo--qt').innerHTML = winQtd;   
     };    
 })
@@ -76,10 +76,10 @@ q('.pizzaInfo--qtmais').addEventListener('click', ()=>{
     
 //selecionar o tamanho especifico
 qsa('.pizzaInfo--size').forEach((size, sizeIndex) => {
-   size.addEventListener('click', (elem)=>{
-       q('.pizzaInfo--size.selected').classList.remove('selected');
-       size.classList.add('selected');
-   })          
+    size.addEventListener('click', (elem)=>{
+        q('.pizzaInfo--size.selected').classList.remove('selected');
+        size.classList.add('selected');
+    })          
 });
 
 //montar carrinho
@@ -116,7 +116,6 @@ q('.menu-closer').addEventListener('click', () => {
         q('aside').style.left = '100vw';
     }
 });
-   
 
 function updateCart() {
     q('.menu-openner span').innerHTML = cart.length;
@@ -172,9 +171,9 @@ function updateCart() {
         desconto = subtotal * 0.1;
         total = subtotal - desconto;
         
-        q('.subtotal span:last-child').innerHTML = `R$ ${subtotal.toFixed(2).replace(".",",")}`;
-        q('.desconto span:last-child').innerHTML = `R$ ${desconto.toFixed(2).replace(".",",")}`;
-        q('.total span:last-child').innerHTML = `R$ ${total.toFixed(2).replace(".",",")}`;
+        q('.subtotal span:last-child').innerHTML = `$ ${subtotal.toFixed(2).replace(".",",")}`;
+        q('.desconto span:last-child').innerHTML = `$ ${desconto.toFixed(2).replace(".",",")}`;
+        q('.total span:last-child').innerHTML = `$ ${total.toFixed(2).replace(".",",")}`;
 
         
     } else { 
