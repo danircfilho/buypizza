@@ -1,10 +1,10 @@
-let cart = []; //array para o carrinho
-let winQtd = 1; //armazenar as quantidades no modal 
-modalKey = 0; //armazenar o tipo de pizza selecionado no modal 
-const q = (el) => document.querySelector(el); //reduzir a sintaxe query
-const qsa = (el) => document.querySelectorAll(el); //reduzir a sintaxe queryAll
+let cart = []; 
+let winQtd = 1;  
+modalKey = 0;  
+const q = (el) => document.querySelector(el); 
+const qsa = (el) => document.querySelectorAll(el); 
 
-//mapear a lista JSON - listagem das pizzas
+//map the JSON list - Pizzas
 pizzaJson.map((item , index) => {
     let pizzaItem = q('.models .pizza-item').cloneNode(true);
 
@@ -14,7 +14,6 @@ pizzaJson.map((item , index) => {
     pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     
-        //adicionar evento de clique para os itens
     pizzaItem.querySelector('a').addEventListener ('click', (ev)=>{
         ev.preventDefault();
 
@@ -22,7 +21,7 @@ pizzaJson.map((item , index) => {
         winQtd = 1;
         modalKey = key; 
 
-        //preencher os itens no modal - nota usando q (select) e qsa (select all)
+        //fill the items in the modal - q (select) and qsa (select all)
         q('.pizzaBig img').src = pizzaJson[key].img;
         q('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
         q('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
@@ -31,24 +30,24 @@ pizzaJson.map((item , index) => {
        
         qsa('.pizzaInfo--size').forEach((size, sizeIndex) => {
             if (sizeIndex == 2) {
-                size.classList.add('selected'); //mantém o item 2 selecionado
+                size.classList.add('selected'); 
             }
             size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];           
         });
-        q('.pizzaInfo--qt').innerHTML = winQtd; //preenche a qtde padrão na janela suspensa
+        q('.pizzaInfo--qt').innerHTML = winQtd; 
         
         //estilos aos itens
         q('.pizzaWindowArea').style.opacity = 0;
-        q('.pizzaWindowArea').style.display = 'flex'; //no css está 'none'
+        q('.pizzaWindowArea').style.display = 'flex'; 
         setTimeout (()=>{
         q('.pizzaWindowArea').style.opacity = 1;
-        }, 200); //200 milisegundos, 1/5 de 1 segundo (1000 milisegundos = 1 segundo)
+        }, 200); //200 milliseconds, 1/5 of 1 second (1000 milliseconds = 1 second)
 
     });
-   q('.pizza-area').append (pizzaItem); //adiciona o item
+   q('.pizza-area').append (pizzaItem); 
 })
 
-//Eventos do modal
+//modal events
 function closeWin() {
     q('.pizzaWindowArea').style.opacity = 0;
     setTimeout (()=>{
@@ -56,12 +55,12 @@ function closeWin() {
     }, 500);
 }
 
-//cancelar e voltar
+//cancel and return
 qsa('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach ((itemCancel) => {
     itemCancel.addEventListener('click', closeWin);
 });
 
-//incrementar e decrementar a quantidade do pedido
+//increment and decrement the order quantity
 q('.pizzaInfo--qtmenos').addEventListener('click', () => {
     if (winQtd > 1) {
     winQtd--;
@@ -74,7 +73,7 @@ q('.pizzaInfo--qtmais').addEventListener('click', ()=>{
     q('.pizzaInfo--qt').innerHTML = winQtd;
 })
     
-//selecionar o tamanho especifico
+//select specific size
 qsa('.pizzaInfo--size').forEach((size, sizeIndex) => {
     size.addEventListener('click', (elem)=>{
         q('.pizzaInfo--size.selected').classList.remove('selected');
@@ -82,17 +81,16 @@ qsa('.pizzaInfo--size').forEach((size, sizeIndex) => {
     })          
 });
 
-//montar carrinho
+//cart
 q('.pizzaInfo--addButton').addEventListener('click', () => {
 
     let size = parseInt(q('.pizzaInfo--size.selected').getAttribute('data-key'));
-    let identif = pizzaJson[modalKey].id+'@'+size; //criar um identificador para itens iguais
+    let identif = pizzaJson[modalKey].id+'@'+size; 
     let key = cart.findIndex((item) => item.identif == identif);
 
     if (key > -1) {
         cart[key].qt += winQtd;
     } else {
-        //por os itens no carrinho
         cart.push({
             identif,
             id:pizzaJson[modalKey].id,
@@ -105,7 +103,7 @@ q('.pizzaInfo--addButton').addEventListener('click', () => {
     closeWin();    
 });
 
-//Abrir e fechar menu-mobile
+//open and close menu-mobile
 q('.menu-openner').addEventListener('click', () => {
     if(cart.length > 0) {
         q('aside').style.left = '0';
@@ -122,7 +120,7 @@ function updateCart() {
 
     if (cart.length > 0) {
         q('aside').classList.add('show');
-        q('.cart').innerHTML = ''; //limpar
+        q('.cart').innerHTML = ''; 
 
         let subtotal = 0;
         let desconto = 0;
@@ -136,13 +134,13 @@ function updateCart() {
             let pizzaSizeName;
             switch(cart[i].size) {
                 case 0:
-                    pizzaSizeName = 'P';
+                    pizzaSizeName = 'SM';
                     break;
                 case 1:
-                    pizzaSizeName = 'M';
+                    pizzaSizeName = 'MD';
                     break;    
                 case 2:
-                    pizzaSizeName = 'G';
+                    pizzaSizeName = 'BG';
                     break;
             }
 
@@ -164,7 +162,7 @@ function updateCart() {
                 cart[i].qt++;
                 updateCart();
             });
-           
+        
             q('.cart').append(cartItem); //adiciona
         }
 
