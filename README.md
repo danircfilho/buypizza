@@ -10,11 +10,8 @@
 ## Description
 This project features a pizza ordering website. Items with their characteristics and values are selected in a modal and added to a shopping cart.
 
-## Deployment and hosting
-- Back-end - no application / Front-end on Netlify
-
 ## Visit this project on the website:
-https://buy-pizza.netlify.app/
+https://danielrodrigues.dev.br/pizza
 
 Copyrigth (c) 2021 - Daniel Rodrigues de Carvalho Filho
 
