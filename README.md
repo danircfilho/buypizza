@@ -11,7 +11,7 @@
 This project features a pizza ordering website. Items with their characteristics and values are selected in a modal and added to a shopping cart.
 
 ## Visit this project on the website:
-https://pizza.danielrodrigues.dev.br
+https://buy-pizza.netlify.app/
 
 Copyrigth (c) 2021 - Daniel Rodrigues de Carvalho Filho
 
